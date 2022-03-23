@@ -1,0 +1,54 @@
+module h3(a,b,s);
+input [8:0] a,b;
+output [8:0] s;
+
+and(s[0],a[0],b[0]);   //s0
+
+and(a1b0,a[1],b[0]);
+and(a0b1,a[0],b[1]);
+adder a1(a1b0,a0b1,s[1],c1);  //s1
+
+
+and(a1b1,a[1],b[1]);
+and(a2b0,a[2],b[0]);
+and(a0b2,a[0],b[2]);
+adder a2(c1,a1b1,first,c2);
+adder a3(first,a2b0,sec,c3);
+adder a4(sec,a0b2,s[2],c4); //s2
+
+adder a5(c2,c3,one,c5);
+adder a6(one,c4,two,c6);
+and(a2b1,a[2],b[1]);
+and(a1b2,a[1],b[2]);
+adder a7(two,a2b1,three,c7);
+adder a8(three,a1b2,s[3],c8); //s3
+
+and(a2b2,a[2],b[2]);
+adder a9(c5,c6,aa,c9);
+adder a10(aa,c7,bb,c10);
+adder a11(bb,c8,cc,c11);
+adder a12(cc,a2b2,s[4],c12); //s4
+
+adder a13(c9,c10,oo,c13);
+adder a14(oo,c11,pp,c14);
+adder a15(pp,c12,s[5],c15);  //s5
+
+adder a16(c13,c14,ioi,c16);
+adder a17(ioi,c15,s[6],c17);  //s6
+
+adder a18(c16,c17,s[7],s[8]);  //s7¡Bs8                         
+
+                              
+
+
+
+endmodule
+
+module adder(a,b,s,co);
+input a,b;
+output s,co;
+
+and(co,a,b);
+xor(s,a,b);
+
+endmodule

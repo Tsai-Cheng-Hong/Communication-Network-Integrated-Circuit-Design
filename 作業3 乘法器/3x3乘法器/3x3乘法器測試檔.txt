@@ -1,0 +1,23 @@
+module HA1bits_test;
+reg [8:0]a,b;
+integer ia,ib;
+wire [8:0] s;
+
+
+h3 fa4(a,b,s);
+initial begin
+a=0;
+b=0;
+
+for(ia=0;ia<=5;ia=ia+1)
+ begin
+  #10 a=ia;
+    for(ib=0;ib<=7;ib=ib+1)
+     begin
+      #10 b=ib;
+     end
+ end
+#10 $finish;
+
+end
+endmodule
